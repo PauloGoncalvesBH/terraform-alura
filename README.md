@@ -77,3 +77,7 @@ ssh -i ~/.ssh/terraform-alura-aws ubuntu@ec2-54-86-4-122.compute-1.amazonaws.com
 ## Quebrando o arquivo main.tf em pequenos arquivos (Aula 04.02)
 
 Sugestão é organizar os arquivos quebrando por recursos. No dia a dia o instrutor gosta de, o que chama de _recursos principais_ (instâncias, bucket, database, que são recursos de infra), coloca no `main.tf`, recursos separados, como _security groups, variáveis_, etc, separa em arquivos únicos.
+
+## Pegar AMI da máquina
+
+Ir no **Painel EC2**, em **Executar instância** e copiar o AMI de máquina ubuntu 64 bits x86. Ex.: `ami-0629230e074c580f2`.

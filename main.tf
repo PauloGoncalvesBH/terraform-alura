@@ -1,7 +1,14 @@
-# Configure the AWS Provider
+
 provider "aws" {
   version = "~> 3.0"
   region  = "us-east-1"
+}
+
+# Aula 04.04 - Lidando com multi-region
+provider "aws" {
+  alias = "us-east-2"
+  version = "~> 3.0"
+  region  = "us-east-2"
 }
 
 resource "aws_instance" "dev" {
@@ -37,6 +44,18 @@ resource "aws_instance" "dev5" {
     Name = "dev5"
   }
   vpc_security_group_ids = ["${aws_security_group.acesso-ssh.id}"]
+}
+
+# Aula 04.04 - Lidando com multi-region
+resource "aws_instance" "dev6" {
+  provider = aws.us-east-2 # Provider da region us-east-2
+  ami = "ami-0629230e074c580f2" # O AMI é diferente das outras máquinas pois cada region possui um ami diferente por tipo de instância
+  instance_type = "t2.micro"
+  key_name = "terraform-curso-alura"
+  tags = {
+    Name = "dev6"
+  }
+  vpc_security_group_ids = ["${aws_security_group.acesso-ssh-us-east-2.id}"] # security group criado para a region us-east-2
 }
 
 # Aula 03.02 - Vinculando nova máquina dev4 com bucket S3

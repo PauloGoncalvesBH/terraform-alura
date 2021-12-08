@@ -16,3 +16,22 @@ resource "aws_security_group" "acesso-ssh" {
     Name = "ssh"
   }
 }
+
+# Aula 04.04 - Lidando com multi-region
+resource "aws_security_group" "acesso-ssh-us-east-2" {
+  provider = aws.us-east-2 # Provider ponto nome do alias
+  name        = "acesso-ssh"
+  description = "Acesso ao SSH"
+
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["201.17.172.46/32"] # IPv4 e /32
+  }
+
+  tags = {
+    Name = "ssh"
+  }
+}
