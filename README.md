@@ -1,6 +1,13 @@
 
 # Curso de terraform da Alura
 
+## Referências
+
+- [Documentação do provider AWS no Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+- [Curso de Terraform: Automatize a infraestrutura na nuvem](https://cursos.alura.com.br/course/terraform)
+- [Página da AWS dos buckets S3](https://s3.console.aws.amazon.com/s3/home?region=us-east-1)
+- [Página da AWS das instâncias EC2 em us-east-1](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:v=3;sort=tag:Name)
+
 ## Aula 01.04
 
 Usar o seguinte comando para gerar SSH:
@@ -21,7 +28,9 @@ cp terraform-alura-aws.pub ~/.ssh
 
 É preciso **Importar o par de chaves** em https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs: e criar a chave.
 
-## Aula 01.06
+## Comandos
+
+### Aula 01.06
 
 Usar o seguinte comando para baixar as dependências e plugins:
 
@@ -38,3 +47,30 @@ Caso o planejamento acima esteja correto, é preciso aplicar, fazendo o deploy, 
 ```
 terraform apply
 ```
+
+### Aula 02.04
+
+Comando para ter uma _foto_ de como está o ambiente (Ele lê o arquivo _terraform.tfstate_, que não deve ser versionado):
+```
+terraform show
+```
+
+Para ver os security groups via AWS CLI:
+```
+aws ec2 describe-security-groups
+```
+
+## Para conectar na instância via SSH
+
+Ir na lista de instâncias, selecionar a instância, clicar em **Conectar** via **Cliente SSH** e copiar o comando.
+
+Exemplo:
+```
+ssh -i "terraform-curso-alura.pem" ubuntu@ec2-54-86-4-122.compute-1.amazonaws.com
+```
+
+Substituir o `terraform-curso-alura.pem` pela chave privada do SSH, que está em `~/.ssh/terraform-alura-aws`:
+```
+ssh -i ~/.ssh/terraform-alura-aws ubuntu@ec2-54-86-4-122.compute-1.amazonaws.com 
+```
+
