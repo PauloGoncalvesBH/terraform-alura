@@ -13,7 +13,7 @@ provider "aws" {
 
 resource "aws_instance" "dev" {
   count = 3
-  ami = "ami-083654bd07b5da81d" # Ubuntu Server 20.04 LTS (HVM), SSD Volume Type (64 bits x86)
+  ami = var.amis["us-east-1"] # Ubuntu Server 20.04 LTS (HVM), SSD Volume Type (64 bits x86)
   instance_type = "t2.micro" # Tamanho para free tier
   key_name = "terraform-curso-alura" # Nome do par de chaves criada na AWS. Ler README aula 01.04.
   tags = {
@@ -25,7 +25,7 @@ resource "aws_instance" "dev" {
 
 # Aula 03.02 - Vinculando nova máquina dev4 com bucket S3
 resource "aws_instance" "dev4" {
-  ami = "ami-083654bd07b5da81d"
+  ami = var.amis["us-east-1"]
   instance_type = "t2.micro"
   key_name = "terraform-curso-alura"
   tags = {
@@ -37,7 +37,7 @@ resource "aws_instance" "dev4" {
 
 # Aula 03.02 - O instrutor está crazy, para que a dev5 people?
 resource "aws_instance" "dev5" {
-  ami = "ami-083654bd07b5da81d"
+  ami = var.amis["us-east-1"]
   instance_type = "t2.micro"
   key_name = "terraform-curso-alura"
   tags = {
@@ -49,7 +49,7 @@ resource "aws_instance" "dev5" {
 # Aula 04.04 - Lidando com multi-region
 resource "aws_instance" "dev6" {
   provider = aws.us-east-2 # Provider da region us-east-2
-  ami = "ami-0629230e074c580f2" # O AMI é diferente das outras máquinas pois cada region possui um ami diferente por tipo de instância
+  ami = var.amis["us-east-2"] # O AMI é diferente das outras máquinas pois cada region possui um ami diferente por tipo de instância
   instance_type = "t2.micro"
   key_name = "terraform-curso-alura"
   tags = {
