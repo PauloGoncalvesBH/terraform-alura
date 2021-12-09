@@ -96,3 +96,7 @@ _Exemplo:_
 Se a `aws_instance.dev4` depende da `aws_s3_bucket.dev4`, ao destruir o bucket ambos os recursos serão removidos, pois sabe que são interdependentes.
 
 Após fazer o destroy com o comando é preciso remover os recursos do arquivo `main.tf` para não ser provisionados novamente.
+
+## Para saída de outputs (aula 06.04)
+
+Executar `terraform refresh` para atualizar as informações.
