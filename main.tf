@@ -24,6 +24,7 @@ resource "aws_instance" "dev" {
 }
 
 # Aula 03.02 - Vinculando nova máquina dev4 com bucket S3
+/*
 resource "aws_instance" "dev4" {
   ami = var.amis["us-east-1"]
   instance_type = "t2.micro"
@@ -34,6 +35,7 @@ resource "aws_instance" "dev4" {
   vpc_security_group_ids = ["${aws_security_group.acesso-ssh.id}"]
   depends_on = [aws_s3_bucket.dev4] # É aqui que vincula a dev4 com o bucket s3 criado
 }
+*/
 
 # Aula 03.02 - O instrutor está crazy, para que a dev5 people?
 resource "aws_instance" "dev5" {
@@ -72,6 +74,7 @@ resource "aws_instance" "dev7" {
 
 # Aula 03.02 - Vinculando nova máquina dev4 com bucket S3
 # Bucket da AWS não precisa de region, pois já é multi-region
+/*
 resource "aws_s3_bucket" "dev4" {
   bucket = "rmerceslabs-dev4-paulo-08-12-2021" # Sei lá porque rmerceslabs, deve ser propaganda do instrutor
   acl    = "private"
@@ -80,6 +83,7 @@ resource "aws_s3_bucket" "dev4" {
     Name = "rmerceslabs-dev4"
   }
 }
+*/
 
 # Aula 04.06
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table

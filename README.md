@@ -81,3 +81,18 @@ Sugestão é organizar os arquivos quebrando por recursos. No dia a dia o instru
 ## Pegar AMI da máquina
 
 Ir no **Painel EC2**, em **Executar instância** e copiar o AMI de máquina ubuntu 64 bits x86. Ex.: `ami-0629230e074c580f2`.
+
+## Removendo recursos (Aula 06.02)
+
+Para remover recursos tem 2 possibilidades, sendo:
+
+1. Apagar os recursos do arquivo `main.tf` e executar normalmente os comandos `terraform plan` e `apply`.
+1. Executar o comando `terraform destroy -target {NOME_DO_RECURSO}`. Ex.: `terraform destroy -target aws_instance.dev4`.
+
+Se um recurso possui dependência, para apagar os 2 é preciso apagar o recurso que está em `depends_on`.
+
+_Exemplo:_
+
+Se a `aws_instance.dev4` depende da `aws_s3_bucket.dev4`, ao destruir o bucket ambos os recursos serão removidos, pois sabe que são interdependentes.
+
+Após fazer o destroy com o comando é preciso remover os recursos do arquivo `main.tf` para não ser provisionados novamente.
