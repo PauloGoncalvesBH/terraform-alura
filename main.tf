@@ -15,7 +15,7 @@ resource "aws_instance" "dev" {
   count = 3
   ami = var.amis["us-east-1"] # Ubuntu Server 20.04 LTS (HVM), SSD Volume Type (64 bits x86)
   instance_type = "t2.micro" # Tamanho para free tier
-  key_name = "terraform-curso-alura" # Nome do par de chaves criada na AWS. Ler README aula 01.04.
+  key_name = var.key_name # Nome do par de chaves criada na AWS. Ler README aula 01.04.
   tags = {
     Name = "dev${count.index}"
   }
@@ -27,7 +27,7 @@ resource "aws_instance" "dev" {
 resource "aws_instance" "dev4" {
   ami = var.amis["us-east-1"]
   instance_type = "t2.micro"
-  key_name = "terraform-curso-alura"
+  key_name = var.key_name
   tags = {
     Name = "dev4"
   }
@@ -39,7 +39,7 @@ resource "aws_instance" "dev4" {
 resource "aws_instance" "dev5" {
   ami = var.amis["us-east-1"]
   instance_type = "t2.micro"
-  key_name = "terraform-curso-alura"
+  key_name = var.key_name
   tags = {
     Name = "dev5"
   }
@@ -51,12 +51,23 @@ resource "aws_instance" "dev6" {
   provider = aws.us-east-2 # Provider da region us-east-2
   ami = var.amis["us-east-2"] # O AMI é diferente das outras máquinas pois cada region possui um ami diferente por tipo de instância
   instance_type = "t2.micro"
-  key_name = "terraform-curso-alura"
+  key_name = var.key_name
   tags = {
     Name = "dev6"
   }
   vpc_security_group_ids = ["${aws_security_group.acesso-ssh-us-east-2.id}"] # security group criado para a region us-east-2
   depends_on = [aws_dynamodb_table.dynamodb-homologacao]
+}
+
+resource "aws_instance" "dev7" {
+  provider = aws.us-east-2 # Provider da region us-east-2
+  ami = var.amis["us-east-2"] # O AMI é diferente das outras máquinas pois cada region possui um ami diferente por tipo de instância
+  instance_type = "t2.micro"
+  key_name = var.key_name
+  tags = {
+    Name = "dev7"
+  }
+  vpc_security_group_ids = ["${aws_security_group.acesso-ssh-us-east-2.id}"] # security group criado para a region us-east-2
 }
 
 # Aula 03.02 - Vinculando nova máquina dev4 com bucket S3
