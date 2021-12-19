@@ -7,6 +7,7 @@
 - [Curso de Terraform: Automatize a infraestrutura na nuvem](https://cursos.alura.com.br/course/terraform)
 - [Página da AWS dos buckets S3](https://s3.console.aws.amazon.com/s3/home?region=us-east-1)
 - [Página da AWS das instâncias EC2 em us-east-1](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:v=3;sort=tag:Name)
+- [The essential terraform cheatsheet](https://justinoconnor.codes/2021/09/06/the-essential-terraform-cheat-sheet/)
 
 ## Aula 01.04
 
